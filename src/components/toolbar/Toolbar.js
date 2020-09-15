@@ -1,6 +1,17 @@
 import {ExcelComponent} from '@core/ExcelComponent';
 
 export class Toolbar extends ExcelComponent {
+  constructor($root) {
+    super($root, {
+      name: 'Toolbar',
+      listeners: ['click'],
+    });
+  }
+
+  onClick(event) {
+    console.log(event.target);
+  }
+
     static className = 'excel__toolbar';
 
     toHTML() {
