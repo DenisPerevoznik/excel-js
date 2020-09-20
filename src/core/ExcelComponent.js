@@ -5,10 +5,24 @@ export class ExcelComponent extends DomListener {
     super($root, options.listeners);
 
     this.name = options.name || '';
+    this.emitter = options.emitter;
+    this.unsubscibers = [];
+    this.prepare();
   }
+
+  prepare() {}
 
   toHTML() {
     return '';
+  }
+
+  emit(event, ...args) {
+    this.emitter.emit(event, ...args);
+  }
+
+  subscribe(event, fn) {
+    const unsub = this.emitter.subscribe(event, fn);
+    this.unsubscibers.push(unsub);
   }
 
   init() {
@@ -17,5 +31,6 @@ export class ExcelComponent extends DomListener {
 
   destroy() {
     this.removeDOMListeners();
+    this.unsubscibers.forEach(unsubFn => unsubFn());
   }
 }
