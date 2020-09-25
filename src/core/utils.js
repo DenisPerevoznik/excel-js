@@ -26,6 +26,10 @@ export function storage(key, data = null) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+export function removeStorage(key) {
+  localStorage.removeItem('excel:' + key);
+}
+
 export function isEqual(a, b) {
   if (typeof a === 'object' && typeof b === 'object') {
     return JSON.stringify(a) === JSON.stringify(b);
@@ -55,4 +59,12 @@ export function debounce(fn, wait) {
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
+}
+
+export function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+export function preventDefault(event) {
+  event.preventDefault();
 }
