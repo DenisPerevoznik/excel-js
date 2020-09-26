@@ -1,6 +1,6 @@
 import {storage} from '@core/utils';
 
-export function toHTML(key) {
+function toHTML(key) {
   const model = storage(key);
   const id = key.split(':')[1];
   const date = new Date(model.lastOpenedDate).toLocaleDateString();
